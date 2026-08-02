@@ -4,8 +4,21 @@ import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 // const flatpickr = require("flatpickr");
 
+// Описаний у документації
+import iziToast from "izitoast";
+// Додатковий імпорт стилів
+import "izitoast/dist/css/iziToast.min.css";
+
 const startBtn = document.querySelector("button[data-start]");
-const clockface = document.querySelector(".timer");
+
+const daysSpan = document.querySelector("span[data-days]");
+const hoursSpan = document.querySelector("span[data-hours]");
+const minutesSpan = document.querySelector("span[data-minutes]");
+const secondsSpan = document.querySelector("span[data-seconds]");
+
+startBtn.disabled = true;
+
+// const clockface = document.querySelector(".timer");
 
 startBtn.addEventListener("click", start);
 
@@ -19,17 +32,18 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    console.log(selectedDates[0]);
     const selectedDate = selectedDates[0];
     userSelectedDate = selectedDate; 
-     let now = new Date()
+     let now = new Date();
 
      if(userSelectedDate.getTime() < now.getTime()) {
-      window.alert("Please choose a date in the future");
-    return;
-    startBtn.disabled = true
-     }else{startBtn.disabled = false;}
-     return startBtn.disabled;
+      iziToast.error({
+        title: "Error",
+        message: "Please choose a date in the future",
+        position: "topRight",
+      });
+      startBtn.disabled = true;
+     } else {startBtn.disabled = false;}
   }
 
 };
@@ -37,7 +51,7 @@ const options = {
 flatpickr("#datetime-picker", options);
 
 
-init();
+// init();
 
 function start() {
   // let userSelectedDate = null; 
@@ -53,43 +67,45 @@ function start() {
 
   isActive = true;
   startBtn.disabled = true;
-  
+
+  const endTime = userSelectedDate.getTime();
 
   IntervalId = setInterval(() => {
     const currentTime = Date.now();
-    const ms = userSelectedDate - currentTime;
-    const time = convertMs(ms);
+    const ms = endTime - currentTime;
 
-    onTick(time);
+    if (ms <= 0) {
+      clearInterval(IntervalId);
+      isActive = false;
+      updateInterface(0, 0, 0, 0); 
+      iziToast.success({
+        title: "Success",
+        message: "Time is up!",
+        position: "topRight",
+      });
+      return;
+      }
+
+      const time = convertMs(ms);
+      updateInterface(time.days, time.hours, time.minutes, time.seconds);
+
+    // onTick(time);
+
   }, 1000)
 }
 
-function onTick(time) {
-  clockface.innerHTML = `
-    <div class="timer">
-      <div class="field">    
-        <span class="value" data-days>${pad(time.days)}</span>
-        <span class="label">Days</span>
-      </div>
-      <div class="field">
-        <span class="value" data-hours>${pad(time.hours)}</span>
-        <span class="label">Hours</span>
-      </div>
-      <div class="field">
-        <span class="value" data-minutes>${pad(time.minutes)}</span>
-        <span class="label">Minutes</span>
-      </div>
-      <div class="field">
-        <span class="value" data-seconds>${(time.seconds)}</span>
-        <span class="label">Seconds</span>
-      </div>
-    </div>`          
+function updateInterface(days, hours, minutes, seconds) {
+  daysSpan.textContent = pad(days);
+  hoursSpan.textContent = pad(hours);
+  minutesSpan.textContent = pad(minutes);
+  secondsSpan.textContent = pad(seconds);
 }
 
-function init() {
-  const time = convertMs(0);
-  onTick(time);
-}
+
+// function init() {
+//   const time = convertMs(0);
+//   onTick(time);
+// }
 // Для підрахунку значень використовуй готову функцію convertMs, 
 // де ms — різниця між кінцевою і поточною датою в мілісекундах.
 
