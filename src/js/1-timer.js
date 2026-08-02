@@ -21,8 +21,15 @@ const options = {
   onClose(selectedDates) {
     console.log(selectedDates[0]);
     const selectedDate = selectedDates[0];
-    userSelectedDate = selectedDate;
-     startBtn.disabled = false; 
+    userSelectedDate = selectedDate; 
+     let now = new Date()
+
+     if(userSelectedDate.getTime() < now.getTime()) {
+      window.alert("Please choose a date in the future");
+    return;
+    startBtn.disabled = true
+     }else{startBtn.disabled = false;}
+     return startBtn.disabled;
   }
 
 };
