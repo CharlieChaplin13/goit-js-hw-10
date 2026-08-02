@@ -1,0 +1,12 @@
+.timer {
+  display: flex;
+  flex-direction: row;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+}
+.value {
+}
+.label {
+}
