@@ -10,6 +10,7 @@ import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
 const startBtn = document.querySelector("button[data-start]");
+const userInput = document.querySelector("#datetime-picker");
 
 const daysSpan = document.querySelector("span[data-days]");
 const hoursSpan = document.querySelector("span[data-hours]");
@@ -31,9 +32,9 @@ const options = {
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
+
   onClose(selectedDates) {
-    const selectedDate = selectedDates[0];
-    userSelectedDate = selectedDate; 
+    userSelectedDate = selectedDates[0];
      let now = new Date();
 
      if(userSelectedDate.getTime() < now.getTime()) {
@@ -67,6 +68,8 @@ function start() {
 
   isActive = true;
   startBtn.disabled = true;
+  userInput.disabled = true; 
+   userInput.style.pointerEvents = 'none';
 
   const endTime = userSelectedDate.getTime();
 
@@ -77,6 +80,9 @@ function start() {
     if (ms <= 0) {
       clearInterval(IntervalId);
       isActive = false;
+      userInput.disabled = false;
+      userInput.style.pointerEvents = 'auto';
+
       updateInterface(0, 0, 0, 0); 
       iziToast.success({
         title: "Success",
@@ -129,6 +135,5 @@ function convertMs(ms) {
 }
 
 function pad(value) {
-  return String(value).padStart(2, 0);
+  return String(value).padStart(2, "0");
 }
-

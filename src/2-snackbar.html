@@ -4,21 +4,46 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page 3</title>
+    <title>2-snackbar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
-    <load
-      src="./partials/header.html"
-      icon-path="./img/sprite.svg#logo"
-      highlight-curr="active"
-    />
+    <load src="./partials/header.html" highlight-curr="active" />
 
     <main>
       <div class="container">
-        <h1 class="main-title">Snackbar</h1>
-        <load src="./partials/back-link.html" />
+        <div class="section">
+          <h1 class="main-title visually-hidden">Snackbar</h1>
+          <form class="form">
+            <label>
+              Delay (ms)
+              <input type="number" name="delay" min="0" required />
+            </label>
+
+            <fieldset>
+              <legend>State</legend>
+              <label>
+                <input type="radio" name="state" value="fulfilled" required />
+                Fulfilled
+              </label>
+              <label>
+                <input type="radio" name="state" value="rejected" required />
+                Rejected
+              </label>
+            </fieldset>
+
+            <button type="submit">Create notification</button>
+          </form>
+        </div>
       </div>
     </main>
+
+    <script type="module" src="./js/2-snackbar.js"></script>
   </body>
 </html>
