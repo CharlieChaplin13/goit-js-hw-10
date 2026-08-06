@@ -4,12 +4,20 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page 2</title>
+    <title>1-timer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
     <script type="module" crossorigin src="/goit-js-hw-10/1-timer.js"></script>
-    <link rel="modulepreload" crossorigin href="/goit-js-hw-10/assets/modulepreload-polyfill-B5Qt9EMX.js">
-    <link rel="modulepreload" crossorigin href="/goit-js-hw-10/assets/vendor-BbSUbo7J.js">
-    <link rel="stylesheet" crossorigin href="/goit-js-hw-10/assets/vendor-C1gPI-5C.css">
-    <link rel="stylesheet" crossorigin href="/goit-js-hw-10/assets/styles-4KweabZZ.css">
+    <link rel="modulepreload" crossorigin href="/goit-js-hw-10/assets/styles-Cfhx_dpD.js">
+    <link rel="modulepreload" crossorigin href="/goit-js-hw-10/assets/vendor-BbbuE1sJ.js">
+    <link rel="stylesheet" crossorigin href="/goit-js-hw-10/assets/styles-BYZ5uzb2.css">
+    <link rel="stylesheet" crossorigin href="/goit-js-hw-10/assets/vendor-CZjNVMTf.css">
   </head>
   <body>
     <header class="header">
@@ -20,11 +28,12 @@
           <a class="nav-link active" href="./1-timer.html">Timer</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {=$highlight-curr}" href="./page-3.html"
+          <a class="nav-link {=$highlight-curr}" href="./2-snackbar.html"
             >Snackbar</a
           >
         </li>
       </ul>
+      <a class="back-link" href="./index.html">Go back</a>
     </nav>
   </div>
 </header>
@@ -32,27 +41,29 @@
 
     <main>
       <div class="container">
-        <h1 class="main-title">Timer</h1>
+        <div class="section">
+          <h1 class="main-title visually-hidden">Timer</h1>
 
-        <input type="text" id="datetime-picker" />
-        <button type="button" data-start>Start</button>
+          <input type="text" id="datetime-picker" />
+          <button type="button" data-start>Start</button>
 
-        <div class="timer">
-          <div class="field">
-            <span class="value" data-days>00</span>
-            <span class="label">Days</span>
-          </div>
-          <div class="field">
-            <span class="value" data-hours>00</span>
-            <span class="label">Hours</span>
-          </div>
-          <div class="field">
-            <span class="value" data-minutes>00</span>
-            <span class="label">Minutes</span>
-          </div>
-          <div class="field">
-            <span class="value" data-seconds>00</span>
-            <span class="label">Seconds</span>
+          <div class="timer">
+            <div class="field">
+              <span class="value" data-days>00</span>
+              <span class="label">Days</span>
+            </div>
+            <div class="field">
+              <span class="value" data-hours>00</span>
+              <span class="label">Hours</span>
+            </div>
+            <div class="field">
+              <span class="value" data-minutes>00</span>
+              <span class="label">Minutes</span>
+            </div>
+            <div class="field">
+              <span class="value" data-seconds>00</span>
+              <span class="label">Seconds</span>
+            </div>
           </div>
         </div>
       </div>
