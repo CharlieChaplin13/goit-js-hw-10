@@ -37,7 +37,7 @@ const options = {
     userSelectedDate = selectedDates[0];
      let now = new Date();
 
-     if(userSelectedDate.getTime() < now.getTime()) {
+     if(userSelectedDate.getTime() <= now.getTime()) {
       iziToast.error({
         title: "Error",
         message: "Please choose a date in the future",
